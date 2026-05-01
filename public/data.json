@@ -7,7 +7,7 @@
     "rating": 4.8,
     "level": "Beginner",
     "description": "Learn full-stack web development from scratch with HTML, CSS, JavaScript, React and Node.js.",
-    "image": "https://i.postimg.cc/example-course1.png",
+    "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=60",
     "category": "Development"
   },
   {
@@ -18,7 +18,7 @@
     "rating": 4.7,
     "level": "Intermediate",
     "description": "Master React.js with hooks, context API, and real-world projects.",
-    "image": "https://i.postimg.cc/example-course2.png",
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60",
     "category": "Development"
   },
   {
@@ -29,7 +29,7 @@
     "rating": 4.6,
     "level": "Beginner",
     "description": "Learn modern UI/UX principles, wireframing, and prototyping.",
-    "image": "https://i.postimg.cc/example-course3.png",
+    "image": "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=800&q=60",
     "category": "Design"
   },
   {
@@ -40,7 +40,7 @@
     "rating": 4.5,
     "level": "Beginner",
     "description": "Learn SEO, social media marketing, and online branding strategies.",
-    "image": "https://i.postimg.cc/example-course4.png",
+    "image": "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=60",
     "category": "Marketing"
   },
   {
@@ -51,7 +51,7 @@
     "rating": 4.9,
     "level": "Advanced",
     "description": "Build production-ready full-stack apps using Next.js App Router.",
-    "image": "https://i.postimg.cc/example-course5.png",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60",
     "category": "Development"
   },
   {
@@ -62,7 +62,7 @@
     "rating": 4.7,
     "level": "Beginner",
     "description": "Start programming with Python and build basic automation projects.",
-    "image": "https://i.postimg.cc/example-course6.png",
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=60",
     "category": "Programming"
   }
 ]
