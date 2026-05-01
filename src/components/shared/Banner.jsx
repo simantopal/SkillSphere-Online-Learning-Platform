@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function HeroBanner() {
   return (
-    <div className="bg-base-100 text-white">
+    <div className="bg-base-100">
       <div className="max-w-7xl mx-auto px-6 py-20 flex flex-col lg:flex-row items-center gap-10">
         
         {/* Left Content */}
@@ -21,20 +21,20 @@ export default function HeroBanner() {
             Upgrade Your Skills Today 🚀
           </h1>
 
-          <p className="text-lg lg:text-xl text-gray-200">
+          <p className="text-lg lg:text-xl text-gray-500">
             Learn from Industry Experts and build real-world skills in Web
             Development, Design, Marketing and more.
           </p>
 
           <div className="flex gap-4">
             <Link href="/courses">
-              <button className="btn bg-white text-black hover:bg-gray-200">
+              <button className="btn bg-primary text-white hover:bg-gray-200">
                 Explore Courses
               </button>
             </Link>
 
             <Link href="/register">
-              <button className="btn btn-outline text-white border-white hover:bg-white hover:text-black">
+              <button className="btn bg-purple-500 border border-white hover:bg-white hover:text-black">
                 Get Started
               </button>
             </Link>
