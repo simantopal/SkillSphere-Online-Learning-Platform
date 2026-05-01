@@ -4,9 +4,9 @@ import React from 'react';
 
 const NavLink = ({href, children}) => {
     const pathname = usePathname();
-    const isAcitve = href === pathname;
+    const isActive = href === pathname;
     return (
-        <Link href={href} className={`${isAcitve ? "text-primary" : ""}`}>
+        <Link href={href} className={`${isActive ? "text-primary" : ""}`}>
             {children}
         </Link>
     );

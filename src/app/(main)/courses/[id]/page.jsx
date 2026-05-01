@@ -1,11 +1,13 @@
-import React from 'react';
+import { redirect } from "next/navigation";
 
-const CourseDetailsPage = () => {
-    return (
-        <div>
-            Course Details Page
-        </div>
-    );
+const CourseDetails = ({ params }) => {
+  const user = null; // auth later
+
+  if (!user) {
+    redirect("/login");
+  }
+
+  return <div>Course Details Page</div>;
 };
 
-export default CourseDetailsPage;
+export default CourseDetails;

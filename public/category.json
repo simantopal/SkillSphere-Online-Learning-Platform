@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Development",
+    "courseCount": 3
+  },
+  {
+    "id": 2,
+    "name": "Design",
+    "courseCount": 1
+  },
+  {
+    "id": 3,
+    "name": "Marketing",
+    "courseCount": 1
+  },
+  {
+    "id": 4,
+    "name": "Programming",
+    "courseCount": 1
+  }
+]

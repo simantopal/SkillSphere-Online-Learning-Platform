@@ -3,6 +3,7 @@ import Link from "next/link";
 import NavLink from "./NavLink";
 
 const Navbar = () => {
+    const user = null;
 
     return (
         <div className="bg-base-300 shadow">
@@ -26,18 +27,30 @@ const Navbar = () => {
                     </Link>
                 </div>
 
-                {/* Menu */}
+                {/* Desktop Menu */}
+
                 <div className="hidden md:flex gap-6 items-center">
                     <NavLink href="/">Home</NavLink>
                     <NavLink href="/courses">Courses</NavLink>
                     <NavLink href="/profile">My Profile</NavLink>
-
-                   
-                    <div className="bg-purple-500 text-white">
-                        <Link href="/login" className="btn">Login</Link>
-                    </div>
-            
                 </div>
+
+                {user ? (
+                    <>
+                        <Link href="/profile">My Profile</Link>
+                        <button className="btn btn-sm">Logout</button>
+                    </>
+                ) : (
+                    <>
+                        <div className="hidden md:flex items-center">
+                            <button className="ml-3"><Link href="/login" className="btn bg-purple-500 text-white">
+                                Login
+                            </Link></button>
+                        </div>
+                    </>
+                )}
+
+
             </div>
         </div>
     );
