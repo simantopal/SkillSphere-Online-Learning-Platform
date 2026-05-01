@@ -1,33 +1,27 @@
-"use client";
-import { useState } from "react";
-import courses from "@/lib/data";
+
 import React from 'react';
 
 const AllCoursePage = () => {
-    const [search, setSearch] = useState("");
-
-  const filtered = courses.filter((c) =>
-    c.title.toLowerCase().includes(search.toLowerCase())
-  );
-
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search..."
-        className="input input-bordered"
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      <div className="grid md:grid-cols-3 gap-6 mt-6">
-        {filtered.map((course) => (
-          <div key={course.id} className="card bg-base-200 p-4">
-            <h2>{course.title}</h2>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="card bg-base-100 w-96 shadow-sm">
+            <figure>
+                <img
+                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    alt="Shoes" />
+            </figure>
+            <div className="card-body">
+                <h2 className="card-title">
+                    Card Title
+                    <div className="badge badge-secondary">NEW</div>
+                </h2>
+                <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                <div className="card-actions justify-end">
+                    <div className="badge badge-outline">Fashion</div>
+                    <div className="badge badge-outline">Products</div>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default AllCoursePage;
