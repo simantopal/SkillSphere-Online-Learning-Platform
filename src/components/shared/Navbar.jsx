@@ -40,7 +40,7 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center ml-3 gap-3">
                         <h2 className="font-medium text-orange-500">Hello, {user.name}</h2>
                         <img
-                            src={user.image || avatar}
+                            src={user?.image || avatar}
                             alt="User avatar"
                             width={40}
                             height={40}

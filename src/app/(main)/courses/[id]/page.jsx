@@ -41,7 +41,7 @@ const CourseDetailsPage = async ({ params }) => {
 
           <div className='flex items-center gap-2 justify-between border-t'>
 
-            <Link href={`/courses/${course.id}`} className="ml-auto">
+            <Link href={"/courses"} className="ml-auto">
               <button className='btn mt-5 bg-pink-700 text-white'><FaArrowLeft />All course in this category</button>
             </Link>
           </div>

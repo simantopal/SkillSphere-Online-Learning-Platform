@@ -1,12 +1,51 @@
-import React from 'react';
+"use client";
+
+import { authClient } from "@/lib/auth-client";
+import Link from "next/link";
 
 const ProfilePage = () => {
-    return (
+  const { data: session, isLoading } = authClient.useSession();
+
+  if (isLoading) {
+    return <p className="text-center mt-10">Loading...</p>;
+  }
+
+  if (!session) {
+    return <p className="text-center mt-10">You are not logged in.</p>;
+  }
+
+  const user = session.user;
+
+  return (
+    <div className="max-w-2xl mx-auto my-24 p-10 bg-base-200 rounded-2xl shadow-lg">
+      
+      <h1 className="text-3xl font-bold mb-8 text-center text-orange-500">
+        My Profile
+      </h1>
+
+      <div className="flex items-center gap-6">
+        <img
+          src={user?.image || "/avatar.png"}
+          alt="profile"
+          className="w-28 h-28 rounded-full object-cover border-4 border-primary"
+        />
+
         <div>
-            <h1 className="text-3xl font-bold">My Profile</h1>
-            <p>Update your personal info here.</p>
+          <p className="text-2xl font-semibold">{user?.name}</p>
+          <p className="text-base opacity-70">{user?.email}</p>
         </div>
-    );
+      </div>
+
+      <div className="mt-8 flex justify-center">
+        <Link href="/profile/update">
+          <button className="btn btn-primary px-8">
+            Update Profile
+          </button>
+        </Link>
+      </div>
+
+    </div>
+  );
 };
 
 export default ProfilePage;
