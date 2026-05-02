@@ -1,13 +1,16 @@
 "use client";
+
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const RegisterPage = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const {
     register,
@@ -16,27 +19,36 @@ const RegisterPage = () => {
   } = useForm();
 
   const handleRegisterFunc = async (formData) => {
-    const { email, name, photo, password } = formData;
+    if (loading) return; // 🛑 prevent spam clicks
 
-    const { data, error } = await authClient.signUp.email({
-      name,
-      email,
-      password,
-      image: photo,
-      callbackURL: "/",
-    });
+    try {
+      setLoading(true);
 
-    if (error) {
-      toast.error(error.message || "User already exists");
-      return;
-    }
+      const { email, name, photo, password } = formData;
 
-    if (data) {
+      const { data, error } = await authClient.signUp.email({
+        name,
+        email,
+        password,
+        image: photo,
+        callbackURL: "/",
+      });
+
+      if (error) {
+        toast.error(error.message || "User already exists");
+        return;
+      }
+
       toast.success("Signup successful 🎉");
 
       setTimeout(() => {
         router.push("/login");
       }, 1000);
+
+    } catch (err) {
+      toast.error("Something went wrong!");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -44,53 +56,47 @@ const RegisterPage = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
       className="min-h-screen flex items-center justify-center bg-base-200 px-4"
     >
       <motion.div
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        whileHover={{ scale: 1.01 }}
         className="w-full max-w-md bg-base-300 shadow-xl rounded-2xl p-8"
       >
+
+        {/* Title */}
         <h1 className="text-2xl font-bold text-center mb-6">
           Create Account 🚀
         </h1>
 
-        <form
-          className="space-y-4"
-          onSubmit={handleSubmit(handleRegisterFunc)}
-        >
+        {/* Form */}
+        <form className="space-y-4" onSubmit={handleSubmit(handleRegisterFunc)}>
+
           {/* Name */}
           <div>
             <label className="text-sm font-medium">Full Name</label>
             <input
               type="text"
               placeholder="Enter your name"
-              {...register("name", {
-                required: "Name field is required",
-              })}
-              className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+              {...register("name", { required: "Name is required" })}
+              className="w-full mt-1 px-4 py-2 border rounded-lg"
             />
             {errors.name && (
-              <p className="text-red-500">{errors.name.message}</p>
+              <p className="text-red-500 text-sm">{errors.name.message}</p>
             )}
           </div>
 
-          {/* Photo */}
+          {/* Photo URL */}
           <div>
             <label className="text-sm font-medium">Photo URL</label>
             <input
               type="text"
-              placeholder="Enter your photo URL"
-              {...register("photo", {
-                required: "Photo field is required",
-              })}
-              className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter photo URL"
+              {...register("photo", { required: "Photo is required" })}
+              className="w-full mt-1 px-4 py-2 border rounded-lg"
             />
             {errors.photo && (
-              <p className="text-red-500">{errors.photo.message}</p>
+              <p className="text-red-500 text-sm">{errors.photo.message}</p>
             )}
           </div>
 
@@ -99,14 +105,12 @@ const RegisterPage = () => {
             <label className="text-sm font-medium">Email</label>
             <input
               type="email"
-              placeholder="Enter your email"
-              {...register("email", {
-                required: "E-mail field is required",
-              })}
-              className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter email"
+              {...register("email", { required: "Email is required" })}
+              className="w-full mt-1 px-4 py-2 border rounded-lg"
             />
             {errors.email && (
-              <p className="text-red-500">{errors.email.message}</p>
+              <p className="text-red-500 text-sm">{errors.email.message}</p>
             )}
           </div>
 
@@ -115,38 +119,45 @@ const RegisterPage = () => {
             <label className="text-sm font-medium">Password</label>
             <input
               type="password"
-              placeholder="Enter your password"
+              placeholder="Enter password"
               {...register("password", {
-                required: "Password field is required",
+                required: "Password is required",
                 minLength: {
                   value: 6,
-                  message: "Password must be at least 6 characters",
+                  message: "Minimum 6 characters required",
                 },
               })}
-              className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2"
+              className="w-full mt-1 px-4 py-2 border rounded-lg"
             />
             {errors.password && (
-              <p className="text-red-500">{errors.password.message}</p>
+              <p className="text-red-500 text-sm">
+                {errors.password.message}
+              </p>
             )}
           </div>
 
-          {/* Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+          {/* Submit Button */}
+          <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+            disabled={loading}
+            className={`w-full py-2 rounded-lg text-white transition ${
+              loading
+                ? "bg-gray-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700"
+            }`}
           >
-            Register
-          </motion.button>
+            {loading ? "Creating account..." : "Register"}
+          </button>
         </form>
 
+        {/* Login Link */}
         <p className="text-center text-sm mt-5">
           Already have an account?{" "}
           <Link href="/login" className="text-blue-600 hover:underline">
             Login
           </Link>
         </p>
+
       </motion.div>
     </motion.div>
   );
