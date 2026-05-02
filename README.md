@@ -54,8 +54,3 @@ https://skill-sphere-online-learning-platfo-beryl.vercel.app/
 
 ## 🛠 Setup Instructions
 
-```bash
-git clone https://github.com/your-username/skillsphere.git
-cd skillsphere
-npm install
-npm run dev
