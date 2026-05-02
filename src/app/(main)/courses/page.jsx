@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 
 import TopCourseCard from '@/components/TopCourseCard';
 import React, { useEffect, useState } from 'react';
@@ -41,7 +42,9 @@ const AllCoursePage = () => {
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-10'>
                 {filteredCourses.length > 0 ? (
                     filteredCourses.map(course => (
+                        <motion.div key={course.id} whileHover={{ scale: 1.05, y: -5 }} transition={{ type: "spring", stiffness: 300 }}>
                         <TopCourseCard key={course.id} course={course} />
+                        </motion.div>
                     ))
                 ) : (
                     <p className="text-center col-span-full text-lg">

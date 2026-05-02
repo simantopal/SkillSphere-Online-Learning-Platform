@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -22,7 +23,7 @@ const RegisterPage = () => {
       email,
       password,
       image: photo,
-      callbackURL: "/", // optional
+      callbackURL: "/",
     });
 
     if (error) {
@@ -33,7 +34,6 @@ const RegisterPage = () => {
     if (data) {
       toast.success("Signup successful 🎉");
 
-      // 👉 slight delay for better UX
       setTimeout(() => {
         router.push("/login");
       }, 1000);
@@ -41,8 +41,19 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-200 px-4">
-      <div className="w-full max-w-md bg-base-300 shadow-xl rounded-2xl p-8">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="min-h-screen flex items-center justify-center bg-base-200 px-4"
+    >
+      <motion.div
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        whileHover={{ scale: 1.01 }}
+        className="w-full max-w-md bg-base-300 shadow-xl rounded-2xl p-8"
+      >
         <h1 className="text-2xl font-bold text-center mb-6">
           Create Account 🚀
         </h1>
@@ -63,17 +74,13 @@ const RegisterPage = () => {
               className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.name && (
-              <p className="text-red-500">
-                {errors.name.message}
-              </p>
+              <p className="text-red-500">{errors.name.message}</p>
             )}
           </div>
 
           {/* Photo */}
           <div>
-            <label className="text-sm font-medium">
-              Photo URL
-            </label>
+            <label className="text-sm font-medium">Photo URL</label>
             <input
               type="text"
               placeholder="Enter your photo URL"
@@ -83,9 +90,7 @@ const RegisterPage = () => {
               className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.photo && (
-              <p className="text-red-500">
-                {errors.photo.message}
-              </p>
+              <p className="text-red-500">{errors.photo.message}</p>
             )}
           </div>
 
@@ -101,17 +106,13 @@ const RegisterPage = () => {
               className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-blue-500"
             />
             {errors.email && (
-              <p className="text-red-500">
-                {errors.email.message}
-              </p>
+              <p className="text-red-500">{errors.email.message}</p>
             )}
           </div>
 
           {/* Password */}
           <div>
-            <label className="text-sm font-medium">
-              Password
-            </label>
+            <label className="text-sm font-medium">Password</label>
             <input
               type="password"
               placeholder="Enter your password"
@@ -125,32 +126,29 @@ const RegisterPage = () => {
               className="w-full mt-1 px-4 py-2 border rounded-lg outline-none focus:ring-2"
             />
             {errors.password && (
-              <p className="text-red-500">
-                {errors.password.message}
-              </p>
+              <p className="text-red-500">{errors.password.message}</p>
             )}
           </div>
 
           {/* Button */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
           >
             Register
-          </button>
+          </motion.button>
         </form>
 
         <p className="text-center text-sm mt-5">
           Already have an account?{" "}
-          <Link
-            href="/login"
-            className="text-blue-600 hover:underline"
-          >
+          <Link href="/login" className="text-blue-600 hover:underline">
             Login
           </Link>
         </p>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

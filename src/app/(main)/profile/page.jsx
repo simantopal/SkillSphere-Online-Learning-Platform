@@ -2,6 +2,7 @@
 
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const ProfilePage = () => {
   const { data: session, isLoading } = authClient.useSession();
@@ -17,13 +18,27 @@ const ProfilePage = () => {
   const user = session.user;
 
   return (
-    <div className="max-w-2xl mx-auto my-24 p-10 bg-base-200 rounded-2xl shadow-lg">
-      
-      <h1 className="text-3xl font-bold mb-8 text-center text-orange-500">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="max-w-2xl mx-auto my-24 p-10 bg-base-200 rounded-2xl shadow-lg"
+    >
+      <motion.h1
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2 }}
+        className="text-3xl font-bold mb-8 text-center text-orange-500"
+      >
         My Profile
-      </h1>
+      </motion.h1>
 
-      <div className="flex items-center gap-6">
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="flex items-center gap-6"
+      >
         <img
           src={user?.image || "/avatar.png"}
           alt="profile"
@@ -34,17 +49,21 @@ const ProfilePage = () => {
           <p className="text-2xl font-semibold">{user?.name}</p>
           <p className="text-base opacity-70">{user?.email}</p>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="mt-8 flex justify-center">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className="mt-8 flex justify-center"
+      >
         <Link href="/profile/update">
           <button className="btn btn-primary px-8">
             Update Profile
           </button>
         </Link>
-      </div>
-
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
