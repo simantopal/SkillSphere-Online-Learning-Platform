@@ -22,7 +22,6 @@ const Navbar = () => {
     >
       <div className="container mx-auto navbar px-4">
 
-        {/* Mobile Menu */}
         <div className="md:hidden dropdown">
           <div tabIndex={0} className="btn btn-ghost">
             ☰
@@ -50,21 +49,18 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Logo */}
         <div className="flex-1">
           <Link href="/" className="text-2xl font-bold text-purple-500">
             SkillSphere
           </Link>
         </div>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex gap-6 items-center">
           <NavLink href="/">Home</NavLink>
           <NavLink href="/courses">Courses</NavLink>
           <NavLink href="/profile">My Profile</NavLink>
         </div>
 
-        {/* Auth Section */}
         {isPending ? (
           <span className="loading loading-spinner text-secondary"></span>
         ) : user ? (
@@ -77,7 +73,6 @@ const Navbar = () => {
               Hello, {user.name}
             </h2>
 
-            {/* Avatar */}
             <img
               src={user?.image || avatar}
               alt="User avatar"
@@ -86,7 +81,6 @@ const Navbar = () => {
               className="rounded-full"
             />
 
-            {/* Logout Button */}
             <motion.button
               onClick={async () => {
                 await authClient.signOut();

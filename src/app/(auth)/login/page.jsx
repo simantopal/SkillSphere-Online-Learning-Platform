@@ -14,7 +14,6 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [googleLoading, setGoogleLoading] = useState(false);
 
-  // Google Login
   const handleGoogleSignin = async () => {
     if (googleLoading) return;
 
@@ -34,16 +33,14 @@ const LoginPage = () => {
     }
   };
 
-  // React Hook Form
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  // Email Login
   const handleLoginFunc = async (formData) => {
-    if (loading) return; // 🛑 prevent spam clicks
+    if (loading) return; 
 
     try {
       setLoading(true);
@@ -76,15 +73,12 @@ const LoginPage = () => {
         className="w-full max-w-md bg-base-300 shadow-xl rounded-2xl p-8"
       >
 
-        {/* Title */}
         <h1 className="text-2xl font-bold text-center mb-6">
           Welcome Back 👋
         </h1>
 
-        {/* Form */}
         <form onSubmit={handleSubmit(handleLoginFunc)} className="space-y-4">
 
-          {/* Email */}
           <div>
             <label className="text-sm font-medium">Email</label>
             <input
@@ -100,7 +94,6 @@ const LoginPage = () => {
             )}
           </div>
 
-          {/* Password */}
           <div>
             <label className="text-sm font-medium">Password</label>
             <input
@@ -116,7 +109,6 @@ const LoginPage = () => {
             )}
           </div>
 
-          {/* Login Button */}
           <button
             type="submit"
             disabled={loading}
@@ -130,14 +122,12 @@ const LoginPage = () => {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="flex items-center gap-2 my-5">
           <div className="flex-1 h-px bg-gray-400"></div>
           <p className="text-sm text-gray-500">OR</p>
           <div className="flex-1 h-px bg-gray-400"></div>
         </div>
 
-        {/* Google Login */}
         <button
           onClick={handleGoogleSignin}
           disabled={googleLoading}
@@ -149,7 +139,6 @@ const LoginPage = () => {
           {googleLoading ? "Please wait..." : "Continue with Google"}
         </button>
 
-        {/* Register */}
         <p className="text-center text-sm mt-5">
           Don’t have an account?{" "}
           <Link href="/register" className="text-blue-600 hover:underline">
