@@ -6,7 +6,7 @@ SkillSphere is a modern web-based learning platform where students can browse co
 ---
 
 ## 🚀 Live URL
-https://your-live-site-url.com
+https://skill-sphere-online-learning-platfo-beryl.vercel.app/
 
 ---
 
